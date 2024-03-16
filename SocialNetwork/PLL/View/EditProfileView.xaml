@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="SocialNetwork.PLL.View.EditProfileView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:models="clr-namespace:SocialNetwork.BLL.Models" 
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
+             xmlns:customcontrols="clr-namespace:SocialNetwork.PLL.CustomControls"
+             mc:Ignorable="d" FontSize="16"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="#5369ac" Width="800" Height="800">
+        <StackPanel>
+            <Image Source="{Binding BitmapImage, UpdateSourceTrigger=PropertyChanged}"
+                   DataContext="{Binding User, UpdateSourceTrigger=PropertyChanged}"
+               Stretch="Uniform" Height="400" Margin="20"/>
+            <Button Content="Загрузить фото" Margin="2" Width="150" 
+                    Command="{Binding UploadPhotoCommand}"/>
+            <UniformGrid Columns="2" Width="600" DataContext="{Binding User, UpdateSourceTrigger=PropertyChanged}"
+                         d:DataContext="{d:DesignInstance Type={x:Type models:User}}">
+                <TextBlock Text="Имя" Margin="6" Foreground="White"/>
+                <TextBox Text="{Binding FirstName}" Margin="6"/>
+                <TextBlock Text="Фамилия" Margin="6" Foreground="White"/>
+                <TextBox Text="{Binding LastName}" Margin="6"/>
+                <TextBlock Text="Email" Margin="6" Foreground="White"/>
+                <TextBox Text="{Binding Email}" Margin="6" />
+                <TextBlock Text="Пароль" Margin="6" Foreground="White"/>
+                <PasswordBox Margin="6">
+                    <i:Interaction.Behaviors>
+                        <customcontrols:PasswordBehavior Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                    </i:Interaction.Behaviors>
+                </PasswordBox>
+                <TextBlock Text="Любимый фильм" Margin="6" Foreground="White"/>
+                <ComboBox VerticalAlignment="Center" Margin="6" IsTextSearchEnabled="True"
+                          ItemsSource="{Binding AllMovies}" DisplayMemberPath="name"
+                          SelectedValue="{Binding FavoriteMovie, Mode=TwoWay}"
+                          SelectedValuePath="id" />
+                <TextBlock Text="Любимая книга" Margin="6" Foreground="White"/>
+                <ComboBox VerticalAlignment="Center" Margin="6" IsTextSearchEnabled="True"
+                          ItemsSource="{Binding AllBooks}" DisplayMemberPath="name"
+                          SelectedValue="{Binding FavoriteBook, Mode=TwoWay}"
+                          SelectedValuePath="id" />
+            </UniformGrid>
+            <Button Content="Сохранить" Margin="2" Width="150" 
+                    Command="{Binding UpdateUserCommand}"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

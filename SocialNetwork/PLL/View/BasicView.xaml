@@ -1,0 +1,185 @@
+﻿<UserControl x:Class="SocialNetwork.PLL.View.BasicView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:hamburgermenucontrol="clr-namespace:HamburgerMenuControl;assembly=HamburgerMenuControl"
+             mc:Ignorable="d" DataContext="{StaticResource VM}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="#a9b4d6">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Border
+            Grid.Row="0"
+            Padding="20"
+            Background="#5369ac">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <CheckBox x:Name="cbToggleMenu" Grid.Column="0">
+                    <CheckBox.Template>
+                        <ControlTemplate TargetType="CheckBox">
+                            <Grid Background="Transparent">
+                                <Viewbox Width="25" Height="25">
+                                    <Path
+                                        Data="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
+                                        Fill="White"
+                                        Stretch="Fill" />
+                                </Viewbox>
+                            </Grid>
+                        </ControlTemplate>
+                    </CheckBox.Template>
+                </CheckBox>
+
+                <TextBlock
+                    Grid.Column="1"
+                    Margin="20,0,0,0"
+                    FontSize="18"
+                    Foreground="White"
+                    Text="Social Network" />
+                <TextBlock
+                    Grid.Column="2"
+                    Margin="20,0,0,0"
+                    FontSize="18"
+                    Foreground="White"
+                    Text="{Binding Fio, UpdateSourceTrigger=PropertyChanged}" />
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <hamburgermenucontrol:HamburgerMenu DataContext="{Binding UserMenuViewModel}"
+                Grid.Column="0" Grid.ColumnSpan="2"
+                Background="#f2f2f2" HorizontalAlignment="Left"
+                BorderBrush="#dbdbdb" Panel.ZIndex="1"
+                BorderThickness="0,0,1,0"
+                IsOpen="{Binding IsChecked, ElementName=cbToggleMenu}"
+                OpenClosedDuration="0:0:0.5">
+                <hamburgermenucontrol:HamburgerMenu.Resources>
+                    <Style TargetType="hamburgermenucontrol:HamburgerMenuItem">
+                        <Setter Property="Padding" Value="20,10" />
+                        <Setter Property="FontSize" Value="16" />
+                        <Setter Property="Foreground" Value="#444" />
+                        <Setter Property="Background" Value="Transparent" />
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="#1669bb" />
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Foreground" Value="#1669bb" />
+                            </Trigger>
+
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation
+                                            Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"
+                                            To="#dbdbdb"
+                                            Duration="0:0:0.1" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation
+                                            Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"
+                                            To="Transparent"
+                                            Duration="0:0:0.1" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </hamburgermenucontrol:HamburgerMenu.Resources>
+                <hamburgermenucontrol:HamburgerMenu.Content>
+                    <StackPanel Margin="0,10">
+                        <hamburgermenucontrol:HamburgerMenuItem Command="{Binding OpenProfileInfoCommand}">
+                            <TextBlock Text="Информация о профиле" />
+                        </hamburgermenucontrol:HamburgerMenuItem>
+                        <hamburgermenucontrol:HamburgerMenuItem Command="{Binding OpenEditProfileCommand}">
+                            <TextBlock Text="Редактировать профиль" />
+                        </hamburgermenucontrol:HamburgerMenuItem>
+                        <hamburgermenucontrol:HamburgerMenuItem Command="{Binding OpenFriendsCommand}">
+                            <TextBlock Text="Друзья" />
+                        </hamburgermenucontrol:HamburgerMenuItem>
+                        <hamburgermenucontrol:HamburgerMenuItem Command="{Binding OpenBooksEditCommand}">
+                            <TextBlock Text="Книги" />
+                        </hamburgermenucontrol:HamburgerMenuItem>
+                        <hamburgermenucontrol:HamburgerMenuItem Command="{Binding OpenMoviesEditCommand}">
+                            <TextBlock Text="Фильмы" />
+                        </hamburgermenucontrol:HamburgerMenuItem>
+                        <hamburgermenucontrol:HamburgerMenuItem Command="{Binding OpenMessagesCommand}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Сообщения" />
+                                <Grid Margin="10 0" Grid.Column="1" >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Path 
+                                      HorizontalAlignment="Left"
+                                      VerticalAlignment="Center"
+                                      Data="M 0 0 L 4 4 L 8 0 Z">
+                                        <Path.Fill>
+                                            <SolidColorBrush Color="Red" />
+                                        </Path.Fill>
+                                    </Path>
+                                    <TextBlock Text="{Binding IncommingMessageCount, UpdateSourceTrigger=PropertyChanged}" 
+                                               HorizontalAlignment="Right"
+                                               Grid.Column="1" Margin="4"
+                                               Foreground="Red"/>
+                                </Grid>
+                                <Grid Grid.Column="2" Margin="10 0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Path 
+                                      HorizontalAlignment="Left"
+                                      VerticalAlignment="Center"
+                                      Data="M 0 4 L 4 0 L 8 4 Z">
+                                        <Path.Fill>
+                                            <SolidColorBrush Color="Green" />
+                                        </Path.Fill>
+                                    </Path>
+                                    <TextBlock Text="{Binding OutgoingMessageCount, UpdateSourceTrigger=PropertyChanged}" 
+                                               HorizontalAlignment="Right"
+                                               Grid.Column="1" Margin="4"
+                                               Foreground="Green"/>
+                                </Grid>
+                            </Grid>
+                        </hamburgermenucontrol:HamburgerMenuItem>
+                        <hamburgermenucontrol:HamburgerMenuItem>
+                            <Separator/>
+                        </hamburgermenucontrol:HamburgerMenuItem>
+                        <hamburgermenucontrol:HamburgerMenuItem Command="{Binding UnLoginCommand}">
+                            <TextBlock Text="Выход" />
+                        </hamburgermenucontrol:HamburgerMenuItem>
+                    </StackPanel>
+                </hamburgermenucontrol:HamburgerMenu.Content>
+            </hamburgermenucontrol:HamburgerMenu>
+
+            <ContentControl Grid.Column="1" HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Content="{Binding BaseContentControl,UpdateSourceTrigger=PropertyChanged}"
+                             />
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="SocialNetwork.PLL.View.MessagesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewmodel="clr-namespace:SocialNetwork.PLL.ViewModels"
+             mc:Ignorable="d" d:DataContext="{d:DesignInstance Type={x:Type viewmodel:MessageViewModel}}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Width="940" Height="890" Background="#5369ac">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Сообщения" Margin="4 0" FontSize="24" Foreground="White" FontWeight="Bold"/>
+        <UniformGrid Columns="3" HorizontalAlignment="Right">
+            <Button Width="150"
+                    Margin="4" Command="{Binding OpenIncommingMessagesCommand}">
+                <Button.Content>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Входяшие"/>
+                        <TextBlock Margin="10 0" Text="{Binding IncommingMessageCount, UpdateSourceTrigger=PropertyChanged}"
+                                   Grid.Column="1"/>
+                    </Grid>
+                </Button.Content>
+            </Button>
+            <Button Width="150"
+                    Margin="4" Command="{Binding OpenOutgoingMessagesCommand}">
+                <Button.Content>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Исходящие"/>
+                        <TextBlock Margin="10 0" Text="{Binding OutgoingMessageCount, UpdateSourceTrigger=PropertyChanged}"
+                                   Grid.Column="1"/>
+                    </Grid>
+                    
+                </Button.Content>
+            </Button>
+            <Button Content="Написать сообщение" Width="150"
+                    Margin="4" Command="{Binding OpenSendingMessageCommand}" />
+        </UniformGrid>
+        <ContentControl Grid.Row="1" 
+                Content="{Binding ContentControl,UpdateSourceTrigger=PropertyChanged}"/>
+    </Grid>
+</UserControl>

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34601.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocialNetwork", "SocialNetwork\SocialNetwork.csproj", "{FB1F477E-C0CB-4FBE-9FB1-F6242FDFA28F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialNetwork.Test", "SocialNetwork.Test\SocialNetwork.Test.csproj", "{F9C95959-F87F-4D1D-AD5D-91E00F73CDBB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FB1F477E-C0CB-4FBE-9FB1-F6242FDFA28F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB1F477E-C0CB-4FBE-9FB1-F6242FDFA28F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB1F477E-C0CB-4FBE-9FB1-F6242FDFA28F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB1F477E-C0CB-4FBE-9FB1-F6242FDFA28F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9C95959-F87F-4D1D-AD5D-91E00F73CDBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9C95959-F87F-4D1D-AD5D-91E00F73CDBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9C95959-F87F-4D1D-AD5D-91E00F73CDBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9C95959-F87F-4D1D-AD5D-91E00F73CDBB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2C2BDE51-F292-4F2C-9D70-8A55E0C28465}
+	EndGlobalSection
+EndGlobal
